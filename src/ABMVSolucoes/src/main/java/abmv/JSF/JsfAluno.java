@@ -32,6 +32,8 @@ public class JsfAluno {
     private int periodo;
     private String nascimento;
 
+    /*
+    
     public String getNascimento() {
         return nascimento;
     }
@@ -153,5 +155,5 @@ public class JsfAluno {
         this.nascimento = aluno.getNascimento();
         this.doc = aluno.getDoc();
     }
-
+*/
 }

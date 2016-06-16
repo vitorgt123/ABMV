@@ -32,7 +32,7 @@ public class CRUDAluno {
             em.close();
         }
     }
-
+/*
     public java.util.Collection<abmv.Entidades.Aluno> getAll() {
         EntityManager em = emf.createEntityManager();
         try {
@@ -84,4 +84,5 @@ public class CRUDAluno {
             em.close();
         }
     }
-}
+*/
+    }
