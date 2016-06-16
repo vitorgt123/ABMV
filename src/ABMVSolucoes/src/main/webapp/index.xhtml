@@ -11,7 +11,7 @@
             <div class="main-content">
                 <h1>Formulário de Alunos</h1>
                 <h:form>
-                    <table>
+                    <table class="table">
                         <tr>
                             <td class="justify"><label>Id:</label></td>
                             <td><h:inputText value="#{jsfAluno.id}" /></td>
@@ -58,36 +58,36 @@
         </div>
         <hr></hr>
             <h:form>
-                <h:dataTable value="#{jsfAluno.all}" var="pessoa">
+                <h:dataTable value="#{jsfAluno.all}" var="pessoa" style="width: 100%">                       
                     <h:column>
-                        <h:outputText value="#{pessoa.id}" />                    
+                        <h:outputText value="#{pessoa.id}"/>                    
+                    </h:column>    
+                    <h:column  >
+                        <h:outputText value="#{pessoa.nome}"/>                    
                     </h:column>    
                     <h:column>
-                        <h:outputText value="#{pessoa.nome}" />                    
+                        <h:outputText value="#{pessoa.email}"/>                    
                     </h:column>    
                     <h:column>
-                        <h:outputText value="#{pessoa.email}" />                    
+                        <h:outputText value="#{pessoa.curso}"/>                    
                     </h:column>    
                     <h:column>
-                        <h:outputText value="#{pessoa.curso}" />                    
+                        <h:outputText value="#{pessoa.periodo}"/>                    
                     </h:column>    
                     <h:column>
-                        <h:outputText value="#{pessoa.periodo}" />                    
+                        <h:outputText value="#{pessoa.nascimento}"/>                    
                     </h:column>    
                     <h:column>
-                        <h:outputText value="#{pessoa.nascimento}" />                    
+                        <h:outputText value="#{pessoa.cidade}"/>                    
                     </h:column>    
                     <h:column>
-                        <h:outputText value="#{pessoa.cidade}" />                    
+                        <h:outputText value="#{pessoa.estado}"/>                    
                     </h:column>    
                     <h:column>
-                        <h:outputText value="#{pessoa.estado}" />                    
+                        <h:outputText value="#{pessoa.doc}"/>                    
                     </h:column>    
                     <h:column>
-                        <h:outputText value="#{pessoa.doc}" />                    
-                    </h:column>    
-                    <h:column>
-                        <h:commandButton value="X" action="#{jsfAluno.remove(pessoa)}" />                  
+                        <h:commandButton value="X" action="#{jsfAluno.remove(pessoa)}"/>                  
                     </h:column>  
                     <h:column>
                         <h:commandButton value="Editar" action="#{jsfAluno.load_data(pessoa)}" />                  
