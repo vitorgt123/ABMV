@@ -3,26 +3,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>ABMV Soluções</title>
+        <title>ABMV Soluções - Alunos</title>
     </h:head>
     <h:body>
-        Formulário de Pessoas
+        Formulário de Alunos
         <h:form>
             Id:
-            <h:inputText value="#{jsfPessoa.id}" />
+            <h:inputText value="#{jsfAluno.id}" />
             <br></br>
             Nome:
-            <h:inputText value="#{jsfPessoa.nome}" />
+            <h:inputText value="#{jsfAluno.nome}" />
             <br></br>
             Email:
-            <h:inputText value="#{jsfPessoa.email}" />   
+            <h:inputText value="#{jsfAluno.email}" />   
             <br></br>
-            <h:commandButton value="salvar" action="#{jsfPessoa.salvar()}" />              
-            <h:commandButton value="atualizar" action="#{jsfPessoa.update()}" /> 
+            Curso:
+            <h:inputText value="#{jsfAluno.curso}" />   
+            <br></br>
+            Periodo:
+            <h:inputText value="#{jsfAluno.periodo}" />   
+            <br></br>
+            Nascimento:
+            <h:inputText value="#{jsfAluno.nascimento}" />   
+            <br></br>
+            Cidade:
+            <h:inputText value="#{jsfAluno.cidade}" />   
+            <br></br>
+            Estado:
+            <h:inputText value="#{jsfAluno.estado}" />   
+            <br></br>
+            Documento:
+            <h:inputText value="#{jsfAluno.doc}" />   
+            <br></br>
+            <h:commandButton value="salvar" action="#{jsfAluno.salvar()}" />              
+            <h:commandButton value="atualizar" action="#{jsfAluno.update()}" /> 
         </h:form>
         <hr></hr>
         <h:form>
-            <h:dataTable value="#{jsfPessoa.all}" var="pessoa">
+            <h:dataTable value="#{jsfAluno.all}" var="pessoa">
                 <h:column>
                     <h:outputText value="#{pessoa.id}" />                    
                 </h:column>    
@@ -33,10 +51,28 @@
                     <h:outputText value="#{pessoa.email}" />                    
                 </h:column>    
                 <h:column>
-                    <h:commandButton value="X" action="#{jsfPessoa.remove(pessoa)}" />                  
+                    <h:outputText value="#{pessoa.curso}" />                    
+                </h:column>    
+                <h:column>
+                    <h:outputText value="#{pessoa.periodo}" />                    
+                </h:column>    
+                <h:column>
+                    <h:outputText value="#{pessoa.nascimento}" />                    
+                </h:column>    
+                <h:column>
+                    <h:outputText value="#{pessoa.cidade}" />                    
+                </h:column>    
+                <h:column>
+                    <h:outputText value="#{pessoa.estado}" />                    
+                </h:column>    
+                <h:column>
+                    <h:outputText value="#{pessoa.doc}" />                    
+                </h:column>    
+                <h:column>
+                    <h:commandButton value="X" action="#{jsfAluno.remove(pessoa)}" />                  
                 </h:column>  
                 <h:column>
-                    <h:commandButton value="Editar" action="#{jsfPessoa.load_data(pessoa)}" />                  
+                    <h:commandButton value="Editar" action="#{jsfAluno.load_data(pessoa)}" />                  
                 </h:column> 
             </h:dataTable>
         </h:form>
