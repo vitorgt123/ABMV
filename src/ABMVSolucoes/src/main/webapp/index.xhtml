@@ -6,7 +6,33 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+       Formulário de Alunos
+        <h:form>
+            Id:
+            <h:inputText value="#{jsfPessoa.id}" />
+            <br></br>
+            Curso:
+            <h:inputText value="#{jsfPessoa.nome}" />
+            <br></br>
+            Período:
+            <h:inputText value="#{jsfPessoa.email}" />   
+            <br></br>
+            <h:commandButton value="salvar" action="#{jsfPessoa.salvar()}" />              
+        </h:form>
+        <hr></hr>
+        <h:form>
+            <h:dataTable value="#{jsfPessoa.all}" var="pessoa">
+                <h:column>
+                    <h:outputText value="#{pessoa.id}" />                    
+                </h:column>    
+                <h:column>
+                    <h:outputText value="#{pessoa.nome}" />                    
+                </h:column>    
+                <h:column>
+                    <h:outputText value="#{pessoa.email}" />                    
+                </h:column>    
+            </h:dataTable>
+        </h:form>
     </h:body>
 </html>
 
