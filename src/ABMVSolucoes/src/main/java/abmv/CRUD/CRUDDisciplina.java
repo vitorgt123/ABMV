@@ -5,7 +5,7 @@
  */
 package abmv.CRUD;
 
-import abmv.Entidade.Aluno;
+import abmv.Entidade.Disciplina;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -14,9 +14,9 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author Vitor
+ * @author Marcelo
  */
-public class CRUDAluno {
+public class CRUDDisciplina {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("abmv_ABMVSolucoes_war_1.0-SNAPSHOTPU");
 
@@ -34,10 +34,10 @@ public class CRUDAluno {
         }
     }
 
-    public java.util.Collection<Aluno> getAll() {
+    public java.util.Collection<Disciplina> getAll() {
         EntityManager em = emf.createEntityManager();
         try {
-            return em.createNamedQuery("Aluno.findAll").getResultList();
+            return em.createNamedQuery("Disciplina.findAll").getResultList();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
             return null;
@@ -46,13 +46,13 @@ public class CRUDAluno {
         }
     }
 
-    public void remove(Aluno pessoa) {
+    public void remove(Disciplina disciplina) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            Aluno p;
-            p = em.find(Aluno.class, pessoa.getId());
-            em.remove(p);
+            Disciplina d;
+            d = em.find(Disciplina.class, disciplina.getId());
+            em.remove(d);
             em.getTransaction().commit();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
@@ -62,17 +62,17 @@ public class CRUDAluno {
         }
     }
 
-    public void update(Aluno pessoa) {
+    public void update(Disciplina disciplina) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            Aluno p;
-            p = em.find(Aluno.class, pessoa.getId());
-            p.setNome(pessoa.getNome());
-            p.setEmail(pessoa.getEmail());
-            p.setCurso(pessoa.getCurso());
-            p.setPeriodo(pessoa.getPeriodo());
-            em.merge(p);
+            Disciplina d;
+            d = em.find(Disciplina.class, disciplina.getId());
+            d.setNome(disciplina.getNome());        
+            d.setCurso(disciplina.getCurso());
+            d.setProfessor(disciplina.getProfessor());
+            d.setQtdeaulas(disciplina.getQtdeaulas());                          
+            em.merge(d);
             em.getTransaction().commit();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
@@ -81,5 +81,5 @@ public class CRUDAluno {
             em.close();
         }
     }
-
-    }
+    
+}

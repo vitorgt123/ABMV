@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./resources/templateEntidade.xhtml">
+
+            <ui:define name="top">
+                <p>Formulário de Disciplina</p>
+            </ui:define>
+
+            <ui:define name="left">
+                <h:form>
+                    <table class="table" var="professor">
+                        <tr>
+                            <td class="justify"><label>Id:</label></td>
+                            <td><h:inputText value="#{jsFDisciplina.id}" /></td>
+                        </tr>
+                        <tr>
+                            <td class="justify"><label>Disciplina:</label></td>
+                            <td><h:inputText value="#{jsFDisciplina.nome}" /></td>
+                        </tr>                        
+                        <tr>
+                            <td class="justify"><label>Curso:</label></td>
+                            <td><h:inputText value="#{jsFDisciplina.curso}" />  </td> 
+                        </tr>             
+                        <tr>
+                            <td class="justify"><label>Professor:</label></td>                                                          
+                            <h:selectOneMenu value="#{jsFDisciplina.professor}" converter="omnifaces.SelectItemsConverter" >
+                                <f:selectItems value="#{jsfProfessor.all}" var="prof" itemLabel="#{prof.nome}" itemValue="#{prof}"  />                           
+                            </h:selectOneMenu>      
+
+                        </tr>
+                        <tr>
+                            <td class="justify"><label>Aulas:</label></td>
+                            <td><h:inputText value="#{jsFDisciplina.qtdAulas}" />  </td> 
+                        </tr> 
+                        <tr>
+                            <td colspan="2" class="align-right"><h:commandButton value="salvar" action="#{jsFDisciplina.salvar()}" class="border form-button pointer"/>         
+                                <h:commandButton value="atualizar" action="#{jsFDisciplina.update()}" class="border form-button pointer"/> </td>
+                        </tr>
+                    </table>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <h:dataTable value="#{jsFDisciplina.all}" var="disc" style="width: 100%">                       
+                        <h:column>
+                            <h:outputText value="#{disc.id}"/>                    
+                        </h:column>    
+                        <h:column  >
+                            <h:outputText value="#{disc.nome}"/>                    
+                        </h:column> 
+                        <h:column  >
+                            <h:outputText value="#{disc.curso}"/>                    
+                        </h:column>
+                        <h:column  >
+                            <h:outputText value="#{disc.professor.nome}"/>                    
+                        </h:column>
+                        <h:column  >
+                            <h:outputText value="#{disc.qtdeaulas}"/>                    
+                        </h:column>
+
+                        <h:column>
+                            <h:commandButton value="X" action="#{jsFDisciplina.remove(disc)}"/>                  
+                        </h:column>  
+                        <h:column>
+                            <h:commandButton value="Editar" action="#{jsFDisciplina.load_data(disc)}" />                  
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+                <h:form>
+                    <h:commandButton value="Home" action="#{jsfEnc.goHome()}"/> 
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

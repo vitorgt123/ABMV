@@ -5,6 +5,7 @@
  */
 package abmv.JSF;
 
+import abmv.Entidade.Aluno;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -30,9 +31,7 @@ public class JsfAluno {
     private String estado;
     private String doc;
     private int periodo;
-    private String nascimento;
-
-    /*
+    private String nascimento;   
     
     public String getNascimento() {
         return nascimento;
@@ -105,55 +104,47 @@ public class JsfAluno {
     public void setPeriodo(int periodo) {
         this.periodo = periodo;
     }
+    
+    public String goHome(){
+        return "home.xhtml";
+    }
 
     public void salvar() {
-        abmv.Entidades.Aluno aluno;
-        aluno = new abmv.Entidades.Aluno();
+        Aluno aluno;
+        aluno = new Aluno();
         aluno.setId(id);
         aluno.setNome(nome);
-        aluno.setEmail(email);
-        aluno.setDoc(doc);
-        aluno.setNascimento(nascimento);
-        aluno.setCidade(cidade);
-        aluno.setEstado(estado);
+        aluno.setEmail(email);        
         aluno.setCurso(curso);
         aluno.setPeriodo(periodo);
         new abmv.CRUD.CRUDAluno().persist(aluno);
     }
 
-    public java.util.Collection<abmv.Entidades.Aluno> getAll() {
+    public java.util.Collection<Aluno> getAll() {
         return new abmv.CRUD.CRUDAluno().getAll();
     }
 
-    public void remove(abmv.Entidades.Aluno aluno) {
+    public void remove(Aluno aluno) {
         new abmv.CRUD.CRUDAluno().remove(aluno);
     }
 
     public void update() {
-        abmv.Entidades.Aluno aluno;
-        aluno = new abmv.Entidades.Aluno();
+        Aluno aluno;
+        aluno = new Aluno();
         aluno.setId(id);
         aluno.setNome(nome);
-        aluno.setEmail(email);
-        aluno.setDoc(doc);
-        aluno.setNascimento(nascimento);
-        aluno.setCidade(cidade);
-        aluno.setEstado(estado);
+        aluno.setEmail(email);        
         aluno.setCurso(curso);
         aluno.setPeriodo(periodo);
         new abmv.CRUD.CRUDAluno().update(aluno);
     }
 
-    public void load_data(abmv.Entidades.Aluno aluno) {
+    public void load_data(Aluno aluno) {
         this.id = aluno.getId();
         this.email = aluno.getEmail();
         this.nome = aluno.getNome();
-        this.cidade = aluno.getCidade();
         this.curso = aluno.getCurso();
-        this.estado = aluno.getEstado();
         this.periodo = aluno.getPeriodo();
-        this.nascimento = aluno.getNascimento();
-        this.doc = aluno.getDoc();
     }
-*/
+
 }

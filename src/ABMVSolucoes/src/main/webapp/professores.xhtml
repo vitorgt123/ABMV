@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./resources/templateEntidade.xhtml">
+
+            <ui:define name="top">
+                <p>Formulário de Professores</p>
+            </ui:define>
+
+            <ui:define name="left">
+                <h:form>
+                    <table class="table">
+                        <tr>
+                            <td class="justify"><label>Id:</label></td>
+                            <td><h:inputText value="#{jsfProfessor.id}" /></td>
+                        </tr>
+                        <tr>
+                            <td class="justify"><label>Nome:</label></td>
+                            <td><h:inputText value="#{jsfProfessor.nome}" /></td>
+                        </tr>
+                        <tr>
+                            <td class="justify"><label>Email:</label></td>
+                            <td><h:inputText value="#{jsfProfessor.email}" />   </td>
+                        </tr>
+                        <tr>
+                            <td class="justify"><label>Curso:</label></td>
+                            <td><h:inputText value="#{jsfProfessor.titulo}" />  </td> 
+                        </tr>                        
+                        <tr>
+                            <td colspan="2" class="align-right"><h:commandButton value="salvar" action="#{jsfProfessor.salvar()}" class="border form-button pointer"/>         
+                                <h:commandButton value="atualizar" action="#{jsfProfessor.update()}" class="border form-button pointer"/> </td>
+                        </tr>
+                    </table>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <h:dataTable value="#{jsfProfessor.all}" var="prof" style="width: 100%">                       
+                        <h:column>
+                            <h:outputText value="#{prof.id}"/>                    
+                        </h:column>    
+                        <h:column  >
+                            <h:outputText value="#{prof.nome}"/>                    
+                        </h:column>    
+                        <h:column>
+                            <h:outputText value="#{prof.email}"/>                    
+                        </h:column>    
+                        <h:column>
+                            <h:outputText value="#{prof.titulo}"/>                    
+                        </h:column>                        
+                        <h:column>
+                            <h:commandButton value="X" action="#{jsfProfessor.remove(prof)}"/>                  
+                        </h:column>  
+                        <h:column>
+                            <h:commandButton value="Editar" action="#{jsfProfessor.load_data(prof)}" />                  
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+                <h:form>
+                    <h:commandButton value="Home" action="#{jsfEnc.goHome()}"/> 
+                </h:form>  
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
