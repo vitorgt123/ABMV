@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -43,15 +44,19 @@
                 <h:form>
                     <h:dataTable value="#{jsfProfessor.all}" var="prof" style="width: 100%">                       
                         <h:column>
+                            <f:facet name="header">Id</f:facet>
                             <h:outputText value="#{prof.id}"/>                    
                         </h:column>    
                         <h:column  >
+                            <f:facet name="header">Nome</f:facet>
                             <h:outputText value="#{prof.nome}"/>                    
                         </h:column>    
                         <h:column>
+                            <f:facet name="header">Email</f:facet>
                             <h:outputText value="#{prof.email}"/>                    
                         </h:column>    
                         <h:column>
+                            <f:facet name="header">Titulo</f:facet>
                             <h:outputText value="#{prof.titulo}"/>                    
                         </h:column>                        
                         <h:column>

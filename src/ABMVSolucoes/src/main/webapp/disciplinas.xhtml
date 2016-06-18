@@ -18,30 +18,29 @@
                     <table class="table" var="professor">
                         <tr>
                             <td class="justify"><label>Id:</label></td>
-                            <td><h:inputText value="#{jsFDisciplina.id}" /></td>
+                            <td><h:inputText value="#{jsfDisciplina.id}" /></td>
                         </tr>
                         <tr>
                             <td class="justify"><label>Disciplina:</label></td>
-                            <td><h:inputText value="#{jsFDisciplina.nome}" /></td>
+                            <td><h:inputText value="#{jsfDisciplina.nome}" /></td>
                         </tr>                        
                         <tr>
                             <td class="justify"><label>Curso:</label></td>
-                            <td><h:inputText value="#{jsFDisciplina.curso}" />  </td> 
+                            <td><h:inputText value="#{jsfDisciplina.curso}" />  </td> 
                         </tr>             
                         <tr>
                             <td class="justify"><label>Professor:</label></td>                                                          
-                            <h:selectOneMenu value="#{jsFDisciplina.professor}" converter="omnifaces.SelectItemsConverter" >
+                            <h:selectOneMenu value="#{jsfDisciplina.professor}"  converter="professorConverter" >
                                 <f:selectItems value="#{jsfProfessor.all}" var="prof" itemLabel="#{prof.nome}" itemValue="#{prof}"  />                           
                             </h:selectOneMenu>      
-
                         </tr>
                         <tr>
                             <td class="justify"><label>Aulas:</label></td>
-                            <td><h:inputText value="#{jsFDisciplina.qtdAulas}" />  </td> 
+                            <td><h:inputText value="#{jsfDisciplina.qtdAulas}" />  </td> 
                         </tr> 
                         <tr>
-                            <td colspan="2" class="align-right"><h:commandButton value="salvar" action="#{jsFDisciplina.salvar()}" class="border form-button pointer"/>         
-                                <h:commandButton value="atualizar" action="#{jsFDisciplina.update()}" class="border form-button pointer"/> </td>
+                            <td colspan="2" class="align-right"><h:commandButton value="salvar" action="#{jsfDisciplina.salvar()}" class="border form-button pointer"/>         
+                                <h:commandButton value="atualizar" action="#{jsfDisciplina.update()}" class="border form-button pointer"/> </td>
                         </tr>
                     </table>
                 </h:form>
@@ -49,28 +48,33 @@
 
             <ui:define name="content">
                 <h:form>
-                    <h:dataTable value="#{jsFDisciplina.all}" var="disc" style="width: 100%">                       
+                    <h:dataTable value="#{jsfDisciplina.all}" var="disc" style="width: 100%">                       
                         <h:column>
+                            <f:facet name="header">Id</f:facet>
                             <h:outputText value="#{disc.id}"/>                    
                         </h:column>    
                         <h:column  >
+                            <f:facet name="header">Disciplina</f:facet>
                             <h:outputText value="#{disc.nome}"/>                    
                         </h:column> 
                         <h:column  >
+                            <f:facet name="header">Curso</f:facet>
                             <h:outputText value="#{disc.curso}"/>                    
                         </h:column>
                         <h:column  >
+                            <f:facet name="header">Professor</f:facet>
                             <h:outputText value="#{disc.professor.nome}"/>                    
                         </h:column>
                         <h:column  >
+                            <f:facet name="header">Qtd Aulas</f:facet>
                             <h:outputText value="#{disc.qtdeaulas}"/>                    
                         </h:column>
 
                         <h:column>
-                            <h:commandButton value="X" action="#{jsFDisciplina.remove(disc)}"/>                  
+                            <h:commandButton value="X" action="#{jsfDisciplina.remove(disc)}"/>                  
                         </h:column>  
                         <h:column>
-                            <h:commandButton value="Editar" action="#{jsFDisciplina.load_data(disc)}" />                  
+                            <h:commandButton value="Editar" action="#{jsfDisciplina.load_data(disc)}" />                  
                         </h:column>
                     </h:dataTable>
                 </h:form>

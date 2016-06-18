@@ -74,7 +74,7 @@ public class JsfDisciplina {
         disciplina.setNome(nome);
         disciplina.setCurso(curso);
         disciplina.setQtdeaulas(qtdAulas);
-        System.out.println(professor);
+        System.out.println("Professor Erro: "+professor.getNome());
         disciplina.setProfessor(professor);
         new abmv.CRUD.CRUDDisciplina().persist(disciplina);
     }
