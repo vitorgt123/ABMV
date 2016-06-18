@@ -29,8 +29,12 @@
                             <td><h:inputText value="#{jsfProfessor.email}" />   </td>
                         </tr>
                         <tr>
-                            <td class="justify"><label>Curso:</label></td>
-                            <td><h:inputText value="#{jsfProfessor.titulo}" />  </td> 
+                            <td class="justify"><label>Titulo</label></td>
+                            <!--<td><h:inputText value="#{jsfProfessor.titulo}" />  </td>--> 
+                            <h:selectOneMenu value="#{jsfProfessor.titulo}">
+                                <f:selectItem itemLabel="Mestre"/>
+                                <f:selectItem itemLabel="Doutor"/>
+                            </h:selectOneMenu> 
                         </tr>                        
                         <tr>
                             <td colspan="2" class="align-right"><h:commandButton value="salvar" action="#{jsfProfessor.salvar()}" class="border form-button pointer"/>         

@@ -146,5 +146,9 @@ public class JsfAluno {
         this.curso = aluno.getCurso();
         this.periodo = aluno.getPeriodo();
     }
+    
+    public Aluno getAluno(){
+        return new Aluno();
+    }
 
 }

@@ -47,37 +47,57 @@
             </ui:define>
 
             <ui:define name="content">
-                <h:form>
-                    <h:dataTable value="#{jsfDisciplina.all}" var="disc" style="width: 100%">                       
-                        <h:column>
-                            <f:facet name="header">Id</f:facet>
-                            <h:outputText value="#{disc.id}"/>                    
-                        </h:column>    
-                        <h:column  >
-                            <f:facet name="header">Disciplina</f:facet>
-                            <h:outputText value="#{disc.nome}"/>                    
-                        </h:column> 
-                        <h:column  >
-                            <f:facet name="header">Curso</f:facet>
-                            <h:outputText value="#{disc.curso}"/>                    
-                        </h:column>
-                        <h:column  >
-                            <f:facet name="header">Professor</f:facet>
-                            <h:outputText value="#{disc.professor.nome}"/>                    
-                        </h:column>
-                        <h:column  >
-                            <f:facet name="header">Qtd Aulas</f:facet>
-                            <h:outputText value="#{disc.qtdeaulas}"/>                    
-                        </h:column>
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value="Disciplinas cadastradas"/></h1>
+                        <h:dataTable value="#{jsfDisciplina.all}" var="item">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Id"/>
+                                </f:facet>
+                                <h:outputText value="#{item.id}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nome"/>
+                                </f:facet>
+                                <h:outputText value="#{item.nome}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Curso"/>
+                                </f:facet>
+                                <h:outputText value="#{item.curso}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Qtdeaulas"/>
+                                </f:facet>
+                                <h:outputText value="#{item.qtdeaulas}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Professor"/>
+                                </f:facet>
+                                <h:outputText value="#{item.professor.nome}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Remover"/>
+                                </f:facet>
+                                <h:commandButton value="X" action="#{jsfDisciplina.remove(item)}"/>    
+                            </h:column>
 
-                        <h:column>
-                            <h:commandButton value="X" action="#{jsfDisciplina.remove(disc)}"/>                  
-                        </h:column>  
-                        <h:column>
-                            <h:commandButton value="Editar" action="#{jsfDisciplina.load_data(disc)}" />                  
-                        </h:column>
-                    </h:dataTable>
-                </h:form>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Editar"/>
+                                </f:facet>
+                                <h:commandButton value="Editar" action="#{jsfDisciplina.load_data(item)}" />   
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </f:view>
+
             </ui:define>
 
             <ui:define name="bottom">
