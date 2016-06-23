@@ -5,7 +5,7 @@
  */
 package abmv.CRUD;
 
-import abmv.Entidade.Disciplina;
+import abmv.Entidade.Conteudo;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +17,7 @@ import javax.persistence.Persistence;
  *
  * @author Marcelo
  */
-public class CRUDDisciplina {
+public class CRUDConteudo {
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("abmv_ABMVSolucoes_war_1.0-SNAPSHOTPU");
 
@@ -35,10 +35,10 @@ public class CRUDDisciplina {
         }
     }
 
-    public Collection<Disciplina> getAll() {
+    public Collection<Conteudo> getAll() {
         EntityManager em = emf.createEntityManager();
         try {
-            return em.createNamedQuery("Disciplina.findAll").getResultList();
+            return em.createNamedQuery("Conteudo.findAll").getResultList();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
             return null;
@@ -47,12 +47,12 @@ public class CRUDDisciplina {
         }
     }
 
-    public void remove(Disciplina disciplina) {
+    public void remove(Conteudo conteudo) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            Disciplina d;
-            d = em.find(Disciplina.class, disciplina.getId());
+            Conteudo d;
+            d = em.find(Conteudo.class, conteudo.getConteudoPK());
             em.remove(d);
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -63,16 +63,13 @@ public class CRUDDisciplina {
         }
     }
 
-    public void update(Disciplina disciplina) {
+    public void update(Conteudo conteudo) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            Disciplina d;
-            d = em.find(Disciplina.class, disciplina.getId());
-            d.setNome(disciplina.getNome());        
-            d.setCurso(disciplina.getCurso());
-            d.setProfessor(disciplina.getProfessor());
-            d.setQtdeaulas(disciplina.getQtdeaulas());                          
+            Conteudo d;
+            d = em.find(Conteudo.class, conteudo.getConteudoPK());
+            d.setDescricao(conteudo.getDescricao());
             em.merge(d);
             em.getTransaction().commit();
         } catch (Exception e) {

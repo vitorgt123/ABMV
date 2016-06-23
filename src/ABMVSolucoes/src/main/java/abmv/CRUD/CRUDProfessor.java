@@ -6,6 +6,7 @@
 package abmv.CRUD;
 
 import abmv.Entidade.Professor;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -33,7 +34,7 @@ public class CRUDProfessor {
         }
     }
 
-    public java.util.Collection<Professor> getAll() {
+    public Collection<Professor> getAll() {
         EntityManager em = emf.createEntityManager();
         try {
             return em.createNamedQuery("Professor.findAll").getResultList();

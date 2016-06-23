@@ -6,6 +6,7 @@
 package abmv.CRUD;
 
 import abmv.Entidade.Aluno;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
@@ -34,7 +35,7 @@ public class CRUDAluno {
         }
     }
 
-    public java.util.Collection<Aluno> getAll() {
+    public Collection<Aluno> getAll() {
         EntityManager em = emf.createEntityManager();
         try {
             return em.createNamedQuery("Aluno.findAll").getResultList();

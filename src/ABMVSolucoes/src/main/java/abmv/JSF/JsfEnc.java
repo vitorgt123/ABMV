@@ -28,6 +28,11 @@ public class JsfEnc {
     public String goDisciplinas(){
         return "disciplinas.xhtml";
     }
+    
+    public String goMatricula(){
+        return "matricula.xhtml";
+    }
+    
     public String goHome(){
         return "home.xhtml";
     }
