@@ -6,6 +6,7 @@
 package abmv.JSF;
 
 import abmv.Entidade.Aulas;
+import abmv.Entidade.Matricula;
 import java.util.Collection;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -17,7 +18,7 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class JsfAula {
-    private int matriculaId;
+    private Matricula matriculaId;
     private String dia;
     private int faltas;
 
@@ -26,7 +27,7 @@ public class JsfAula {
         return "JsfAula{" + "matriculaId=" + matriculaId + ", dia=" + dia + ", faltas=" + faltas + '}';
     }
 
-    public JsfAula(int matriculaId, String dia, int faltas) {
+    public JsfAula(Matricula matriculaId, String dia, int faltas) {
         this.matriculaId = matriculaId;
         this.dia = dia;
         this.faltas = faltas;
@@ -35,11 +36,11 @@ public class JsfAula {
     public JsfAula() {
     }
 
-    public int getMatriculaId() {
+    public Matricula getMatriculaId() {
         return matriculaId;
     }
 
-    public void setMatriculaId(int matriculaId) {
+    public void setMatriculaId(Matricula matriculaId) {
         this.matriculaId = matriculaId;
     }
 
@@ -61,7 +62,7 @@ public class JsfAula {
     
      public void salvar() {
         Aulas aula;
-        aula = new Aulas(matriculaId,dia);
+        aula = new Aulas(matriculaId.getId(),dia);
         aula.setFaltas(faltas);        
         new abmv.CRUD.CRUDAula().persist(aula);
     }
@@ -81,7 +82,7 @@ public class JsfAula {
 
     public void update() {                
         Aulas aula;
-        aula = new Aulas(matriculaId,dia);
+        aula = new Aulas(matriculaId.getId(),dia);
         aula.setFaltas(faltas);    
         new abmv.CRUD.CRUDAula().update(aula);
     }
@@ -89,7 +90,7 @@ public class JsfAula {
     public void load_data(Aulas aula) {
         this.dia = aula.getAulasPK().getDia();
         this.faltas = aula.getFaltas();
-        this.matriculaId = aula.getAulasPK().getMatricula();        
+        this.matriculaId = aula.getMatricula1();        
     }
     
 }

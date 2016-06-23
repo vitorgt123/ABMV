@@ -33,7 +33,12 @@ public class JsfEnc {
         return "matricula.xhtml";
     }
     
+    public String goConteudo(){
+        return "conteudo.xhtml";
+    }
+    
     public String goHome(){
         return "home.xhtml";
     }
+    
 }
