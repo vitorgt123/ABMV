@@ -119,6 +119,10 @@ public class JsfAluno {
         aluno.setPeriodo(periodo);
         new abmv.CRUD.CRUDAluno().persist(aluno);
     }
+    
+//    public java.util.Collection<Aluno> getByDisciplina() {
+//        return new abmv.CRUD.CRUDAluno().getAll();
+//    }
 
     public java.util.Collection<Aluno> getAll() {
         return new abmv.CRUD.CRUDAluno().getAll();
