@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./../resources/templateEntidade.xhtml">
+
+            <c:set var="disciplinas" value="#{jsfDisciplina.id}" scope="request" />
+
+            <ui:define name="top">
+                <p>Formulário de Matrícula</p>
+            </ui:define>
+
+            <ui:define name="left">
+                <h:form>
+                    <div class="table" var="matricula">                         
+                        <td class="justify"><label>Disciplina:</label></td>                                                                                  
+                        <h:selectOneMenu value="#{jsfMatricula.disciplina}" converter="disciplinaConverter">
+                            <f:selectItems value="#{jsfDisciplina.all}" var="dis" itemLabel="#{dis.nome}" itemValue="#{dis}" />                           
+                        </h:selectOneMenu>                              
+                    </div>
+                    <h:commandButton value="atualizar" action="#{jsfMatricula.getMatriculaByDisciplina}"/> 
+                    <hr></hr>
+
+                    <div class="table" var="matricula">                         
+                        <td class="justify"><label>Alunos:</label></td>                                                                                  
+                        <h:selectOneMenu value="#{jsfMatricula.aluno}" converter="alunoConverter">
+                            <f:selectItems value="#{jsfAluno.all}" var="alun" itemLabel="#{alun.nome}" itemValue="#{alun}" />                           
+                        </h:selectOneMenu>                              
+                    </div>
+                    <h:commandButton value="adicionar" action="#{jsfMatricula.salvar()}"/>         
+                </h:form>
+
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <div>
+                        <h:dataTable value="#{jsfMatricula.matriculas}" var="item">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Id"/>
+                                </f:facet>
+                                <h:outputText value="#{item.id}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Aluno"/>
+                                </f:facet>
+                                <h:outputText value="#{item.aluno.nome}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Remover"/>
+                                </f:facet>
+                                <h:commandButton value="X" action="#{jsfMatricula.remove(item)}"/>    
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </h:form>
+
+            </ui:define>
+
+            <ui:define name="bottom">
+                <h:form>
+                    <h:commandButton value="Home" action="#{jsfEnc.goHome()}"/> 
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
