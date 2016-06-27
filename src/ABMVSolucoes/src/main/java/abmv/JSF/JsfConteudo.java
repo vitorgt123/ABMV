@@ -17,6 +17,7 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class JsfConteudo {
+
     private Disciplina disciplina;
     private String dia;
     private String descricao;
@@ -33,7 +34,7 @@ public class JsfConteudo {
     @Override
     public String toString() {
         return "JsfConteudo{" + "disciplina=" + disciplina + ", dia=" + dia + ", descricao=" + descricao + '}';
-    }   
+    }
     
     public Disciplina getDisciplina() {
         return disciplina;
@@ -58,19 +59,19 @@ public class JsfConteudo {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
-        public void salvar() {
+
+    public void salvar() {
         Conteudo conteudo;
-        conteudo = new Conteudo(disciplina.getId(),dia);     
+        conteudo = new Conteudo(disciplina.getId(), dia);
         conteudo.setDescricao(descricao);
         new abmv.CRUD.CRUDConteudo().persist(conteudo);
     }
-    
+
 //    public void valueChanged(Conteudo conteudo){
 //        this.conteudo=conteudo;
 //        System.out.println("Professor mudado "+conteudo.getNome());
 //    }
-
+    
     public java.util.Collection<Conteudo> getAll() {
         return new abmv.CRUD.CRUDConteudo().getAll();
     }
@@ -81,14 +82,14 @@ public class JsfConteudo {
 
     public void update() {
         Conteudo conteudo;
-        conteudo = new Conteudo(disciplina.getId(),dia);     
+        conteudo = new Conteudo(disciplina.getId(), dia);
         conteudo.setDescricao(descricao);
         new abmv.CRUD.CRUDConteudo().update(conteudo);
     }
 
     public void load_data(Conteudo conteudo) {
         this.descricao = conteudo.getDescricao();
-        this.dia= conteudo.getConteudoPK().getDia();
+        this.dia = conteudo.getConteudoPK().getDia();
         this.disciplina = conteudo.getDisciplina1();
     }
 }
