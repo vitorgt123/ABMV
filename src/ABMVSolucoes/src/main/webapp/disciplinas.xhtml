@@ -15,34 +15,33 @@
 
             <ui:define name="left">
                 <h:form>
-                    <table class="table" var="professor">
-                        <tr>
+
+                        <div>
                             <td class="justify"><label>Id:</label></td>
                             <td><h:inputText value="#{jsfDisciplina.id}" /></td>
-                        </tr>
-                        <tr>
+                        </div>
+                        <div>
                             <td class="justify"><label>Disciplina:</label></td>
                             <td><h:inputText value="#{jsfDisciplina.nome}" /></td>
-                        </tr>                        
-                        <tr>
+                        </div>                        
+                        <div>
                             <td class="justify"><label>Curso:</label></td>
                             <td><h:inputText value="#{jsfDisciplina.curso}" />  </td> 
-                        </tr>             
-                        <tr>
+                        </div>             
+                        <div>
                             <td class="justify"><label>Professor:</label></td>                                                          
                             <h:selectOneMenu value="#{jsfDisciplina.professor}"  converter="professorConverter" >
                                 <f:selectItems value="#{jsfProfessor.all}" var="prof" itemLabel="#{prof.nome}" itemValue="#{prof}"  />                           
                             </h:selectOneMenu>      
-                        </tr>
-                        <tr>
+                        </div>
+                        <div>
                             <td class="justify"><label>Aulas:</label></td>
                             <td><h:inputText value="#{jsfDisciplina.qtdAulas}" />  </td> 
-                        </tr> 
-                        <tr>
+                        </div> 
+                        <div>
                             <td colspan="2" class="align-right"><h:commandButton value="salvar" action="#{jsfDisciplina.salvar()}" class="border form-button pointer"/>         
                                 <h:commandButton value="atualizar" action="#{jsfDisciplina.update()}" class="border form-button pointer"/> </td>
-                        </tr>
-                    </table>
+                        </div>
                 </h:form>
             </ui:define>
 
