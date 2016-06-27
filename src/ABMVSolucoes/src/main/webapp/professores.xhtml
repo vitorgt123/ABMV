@@ -15,38 +15,36 @@
 
             <ui:define name="left">
                 <h:form>
-                    <table class="table">
-                        <tr>
+                        <div>
                             <td class="justify"><label>Id:</label></td>
                             <td><h:inputText value="#{jsfProfessor.id}" /></td>
-                        </tr>
-                        <tr>
+                        </div>
+                        <div>
                             <td class="justify"><label>Nome:</label></td>
                             <td><h:inputText value="#{jsfProfessor.nome}" /></td>
-                        </tr>
-                        <tr>
+                        </div>
+                        <div>
                             <td class="justify"><label>Email:</label></td>
                             <td><h:inputText value="#{jsfProfessor.email}" />   </td>
-                        </tr>
-                        <tr>
+                        </div>
+                        <div>
                             <td class="justify"><label>Titulo</label></td>
-                            <!--<td><h:inputText value="#{jsfProfessor.titulo}" />  </td>--> 
                             <h:selectOneMenu value="#{jsfProfessor.titulo}">
-                                <f:selectItem itemLabel="Mestre"/>
-                                <f:selectItem itemLabel="Doutor"/>
+                                <f:selectItem itemLabel="Mestre" itemValue="Mestre"/>
+                                <f:selectItem itemLabel="Doutor" itemValue="Doutor"/>
                             </h:selectOneMenu> 
-                        </tr>                        
-                        <tr>
+                        </div>                        
+                        <div>
                             <td colspan="2" class="align-right"><h:commandButton value="salvar" action="#{jsfProfessor.salvar()}" class="border form-button pointer"/>         
                                 <h:commandButton value="atualizar" action="#{jsfProfessor.update()}" class="border form-button pointer"/> </td>
-                        </tr>
-                    </table>
+                        </div>
                 </h:form>
             </ui:define>
 
             <ui:define name="content">
                 <h:form>
-                    <h:dataTable value="#{jsfProfessor.all}" var="prof" style="width: 100%">                       
+                    <h1><h:outputText value="Professores cadastrados"/></h1>
+                    <h:dataTable value="#{jsfProfessor.all}" var="prof">                       
                         <h:column>
                             <f:facet name="header">Id</f:facet>
                             <h:outputText value="#{prof.id}"/>                    
