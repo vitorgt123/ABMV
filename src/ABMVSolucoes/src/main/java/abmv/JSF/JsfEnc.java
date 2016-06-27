@@ -30,7 +30,7 @@ public class JsfEnc {
     }
     
     public String goMatricula(){
-        return "matricula.xhtml";
+        return "admin/matricula.xhtml";
     }
     
     public String goConteudo(){
@@ -39,6 +39,9 @@ public class JsfEnc {
     
     public String goHome(){
         return "home.xhtml";
+    }
+    public String goHomeAdmin(){
+        return "./home.xhtml";
     }
     
 }
