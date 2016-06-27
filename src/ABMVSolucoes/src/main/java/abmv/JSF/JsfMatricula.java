@@ -8,6 +8,8 @@ package abmv.JSF;
 import abmv.Entidade.Aluno;
 import abmv.Entidade.Disciplina;
 import abmv.Entidade.Matricula;
+import java.util.Collection;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -22,12 +24,23 @@ public class JsfMatricula {
     private int id;
     private Disciplina disciplina;
     private Aluno aluno;
+    private static Collection<Matricula> matriculas;
 
     public JsfMatricula(int id, Disciplina disciplina, Aluno aluno) {
         this.id = id;
         this.disciplina = disciplina;
         this.aluno = aluno;
     }
+   
+    public Collection<Matricula> getMatriculas() {        
+        return matriculas;
+    }
+
+    public void setMatriculas(Collection<Matricula> matriculas) {
+        this.matriculas = matriculas;
+    }
+
+    
 
     public JsfMatricula() {
     }
@@ -63,19 +76,28 @@ public class JsfMatricula {
 
     public void salvar() {
         Matricula matricula;
-        matricula = new Matricula(id);
+        matricula = new Matricula(((List<Matricula>)matriculas).get(matriculas.size()-1).getId()+1);
         matricula.setAluno(aluno);
         matricula.setDisciplina(disciplina);                
         new abmv.CRUD.CRUDMatricula().persist(matricula);
+        getMatriculaByDisciplina();
+        
     }
 
 //    public void valueChanged(Matricula matricula) {
 //        this.professor = professor;
 //        System.out.println("Professor mudado " + professor.getNome());
 //    }
+    
 
     public java.util.Collection<Matricula> getAll() {
-        return new abmv.CRUD.CRUDMatricula().getAll();
+        matriculas = new abmv.CRUD.CRUDMatricula().getAll();
+        return matriculas;
+    }
+    
+    public void getMatriculaByDisciplina() {
+        matriculas = new abmv.CRUD.CRUDMatricula().getMatriculaByDisciplina(disciplina.getId());
+        //return matriculas;
     }
 
     public void remove(Matricula matricula) {
