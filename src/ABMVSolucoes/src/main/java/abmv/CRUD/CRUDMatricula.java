@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -46,6 +47,23 @@ public class CRUDMatricula {
             em.close();
         }
     }
+    
+    public Collection<Matricula> getMatriculaByDisciplina(int id) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            Query query = em.createNativeQuery("SELECT * FROM matricula WHERE disciplina="+id, Matricula.class);
+            return  (Collection<Matricula>) query.getResultList();
+            //return em.createQuery("SELECT * FROM matricula WHERE disciplina="+id,Matricula.class).getResultList();
+//            return em.createNamedQuery("Matricula.findMatriculaByDisciplina").getResultList();
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+    
+    
 
     public void remove(Matricula matricula) {
         EntityManager em = emf.createEntityManager();
