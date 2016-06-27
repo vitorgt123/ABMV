@@ -14,33 +14,30 @@
             </ui:define>
 
             <ui:define name="left">
-                <h:form>
-                    <table class="table" var="matricula">
-                        <tr>
+                <h:form>                    
+                        <div>
                             <td class="justify"><label>Id:</label></td>
                             <td><h:inputText value="#{jsfMatricula.id}" /></td>
-                        </tr>
-                        <tr>
+                        </div>
+                        <div>
                             <td class="justify"><label>Disciplina:</label></td>                                                          
                             <h:selectOneMenu value="#{jsfMatricula.disciplina}"  converter="disciplinaConverter" >
                                 <f:selectItems value="#{jsfDisciplina.all}" var="dis" itemLabel="#{dis.nome}" itemValue="#{dis}"  />                           
                             </h:selectOneMenu>      
-                        </tr>
+                        </div>
                         
-                        <tr>
+                        <div>
                             <td class="justify"><label>Aluno:</label></td>                                                          
                             <h:selectOneMenu value="#{jsfMatricula.aluno}"  converter="alunoConverter" >
                                 <f:selectItems value="#{jsfAluno.all}" var="aluno" itemLabel="#{aluno.nome}" itemValue="#{aluno}"  />                           
                             </h:selectOneMenu>      
-                        </tr>
-                        <tr>
+                        </div>
+                        <div>
                             <td colspan="2" class="align-right">
-                                <h:commandButton value="salvar" action="#{jsfMatricula.salvar()}" class="border form-button pointer"/>         
-                                <h:commandButton value="atualizar" action="#{jsfMatricula.update()}" class="border form-button pointer"/> 
+                                <h:commandButton value="Adicionar" action="#{jsfMatricula.salvar()}" class="border form-button pointer"/>         
+                                <h:commandButton value="Atualizar" action="#{jsfMatricula.update()}" class="border form-button pointer"/> 
                             </td>
-                        </tr>
-                        
-                    </table>
+                        </div>                                            
                 </h:form>
             </ui:define>
 
@@ -89,7 +86,7 @@
 
             <ui:define name="bottom">
                 <h:form>
-                    <h:commandButton value="Home" action="#{jsfEnc.goHome()}"/> 
+                    <h:commandButton value="Home" action="#{jsfEnc.goHomeAdmin()}"/> 
                 </h:form> 
             </ui:define>
 
