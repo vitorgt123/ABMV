@@ -15,33 +15,35 @@
 
             <ui:define name="left">
                 <h:form>
-                    <table class="table" var="matricula">                        
-                        <tr>
-                            <td class="justify"><label>Disciplina</label></td>                                                          
-                            <h:selectOneMenu value="#{jsfConteudo.disciplina}"  converter="disciplinaConverter" >
-                                <f:selectItems value="#{jsfDisciplina.all}" var="mat" itemLabel="#{mat.nome}" itemValue="#{mat}"  />                           
-                            </h:selectOneMenu>      
-                        </tr>
-                        
-                        <tr>
-                            <td class="justify"><label>Dia</label></td>
-                            <td><h:inputText value="#{jsfConteudo.dia}" /></td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="justify"><label>Descrição:</label></td>
-                            <td><h:inputText value="#{jsfConteudo.descricao}" /></td>
-                        </tr>
-                        
-                        <tr>
-                            <td colspan="2" class="align-right">
-                                <h:commandButton value="salvar" action="#{jsfConteudo.salvar()}" class="border form-button pointer"/>         
-                                <h:commandButton value="atualizar" action="#{jsfConteudo.update()}" class="border form-button pointer"/> 
-                            </td>
-                        </tr>
-                                              
-                        
-                    </table>
+                    <div>
+                        <td class="justify"><label>Disciplina</label></td>                                                          
+                        <h:selectOneMenu value="#{jsfConteudo.disciplina}"  converter="disciplinaConverter" >
+                            <f:selectItems value="#{jsfDisciplina.all}" var="mat" itemLabel="#{mat.nome}" itemValue="#{mat}"  />                           
+                        </h:selectOneMenu>      
+                    </div>
+
+                    <div>
+                        <td class="justify"><label>Dia</label></td>
+                        <td><h:inputText value="#{jsfConteudo.dia}" /></td>
+                    </div>
+
+                    <div>
+                        <td class="justify"><label>Descrição:</label></td>
+                        <td><h:inputText value="#{jsfConteudo.descricao}" /></td>
+                    </div>
+
+                    <div>
+                        <td class="justify"><label>Aulas</label></td>
+                        <td><h:inputText value="#{jsfDisciplina.qtdAulas}" /></td>
+                    </div>
+
+                    <div>
+                        <td colspan="2" class="align-right">
+                            <h:commandButton value="salvar" action="#{jsfConteudo.salvar()}" class="border form-button pointer"/>         
+                            <h:commandButton value="atualizar" action="#{jsfConteudo.update()}" class="border form-button pointer"/> 
+                        </td>
+                    </div>
+
                 </h:form>
             </ui:define>
 
@@ -50,40 +52,40 @@
                     <h:form>
                         <h1><h:outputText value="Conteudo cadastrado"/></h1>
                         <h:dataTable value="#{jsfConteudo.all}" var="item">
-                            
+
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Disciplina:"/>
                                 </f:facet>
-                                <h:outputText value="#{item.disciplina1.nome}"/>
+                                <h:outputText value="#{item.conteudoPK.disciplina}"/>
                             </h:column>
-                            
-                            
+
+
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Dia:"/>
                                 </f:facet>
                                 <h:outputText value="#{item.conteudoPK.dia}"/>
                             </h:column>
-                            
-                            
+
+
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Faltas:"/>
+                                    <h:outputText value="Descrição"/>
                                 </f:facet>
                                 <h:outputText value="#{item.descricao}"/>
                             </h:column>   
-                            
-                            
-                            
+
+
+
                         </h:dataTable>
-                        
+
                     </h:form>
                 </f:view>
             </ui:define>
 
             <ui:define name="bottom">
-                 <h:form>
+                <h:form>
                     <h:commandButton value="Home" action="#{jsfEnc.goHome()}"/> 
                 </h:form> 
             </ui:define>
