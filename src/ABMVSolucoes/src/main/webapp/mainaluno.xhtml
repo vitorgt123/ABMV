@@ -16,7 +16,10 @@
                 <h:form>
                     <h:panelGrid>                    
                         <h:column >
-                            <h:commandButton value="Matriculas" action="#{jsfEnc.goMatricula()}"/> 
+                            <h:commandButton value="Verificar Notas" action="#{jsfEnc.goViewNotas()}"/> 
+                        </h:column>
+                                                <h:column >
+                            <h:commandButton value="Verificar Faltas" action="#{jsfEnc.goViewFaltas()}"/> 
                         </h:column>
                         <h:column >
                             <h:commandButton value="Sair" action="#{login.doLogout}"/> 

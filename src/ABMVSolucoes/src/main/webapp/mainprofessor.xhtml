@@ -17,13 +17,20 @@
                     <h:panelGrid>
 
                         <h:column >
-                            <h:commandButton value="Disciplinas" action="#{jsfEnc.goDisciplinas()}"/> 
+                            <h:commandButton value="Lançar Faltas" action="#{jsfEnc.goConteudo()}"/> 
                         </h:column>
-                        
+
                         <h:column >
-                            <h:commandButton value="Conteudo" action="#{jsfEnc.goConteudo()}"/> 
+                            <h:commandButton value="Lançar Notas" action="#{jsfEnc.goNotas()}"/> 
                         </h:column>
-                                                                        <h:column >
+
+                        <h:column >
+                            <h:commandButton value="Verificar Notas" action="#{jsfEnc.goViewNotas()}"/> 
+                        </h:column>
+                        <h:column >
+                            <h:commandButton value="Verificar Faltas" action="#{jsfEnc.goViewFaltas()}"/> 
+                        </h:column>
+                        <h:column >
                             <h:commandButton value="Sair" action="#{login.doLogout}"/> 
                         </h:column>
                     </h:panelGrid>
