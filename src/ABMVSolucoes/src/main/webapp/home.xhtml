@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -16,25 +17,18 @@
                 <h:form>
                     <h:panelGrid>
                         <h:column >
-                            <h:commandButton value="Alunos" action="#{jsfEnc.goAlunos()}"/> 
-                        </h:column>
-
+                            <h:selectOneMenu value="#{login.opcao}">
+                                <f:selectItem itemLabel="Admin" itemValue="Admin"/>
+                                <f:selectItem itemLabel="Aluno" itemValue="Aluno"/>
+                                 <f:selectItem itemLabel="Professor" itemValue="Professor"/>
+                            </h:selectOneMenu> 
+                            </h:column>
                         <h:column >
-                            <h:commandButton value="Professores" action="#{jsfEnc.goProfessores()}"/> 
-                        </h:column>
-
-                        <h:column >
-                            <h:commandButton value="Disciplinas" action="#{jsfEnc.goDisciplinas()}"/> 
-                        </h:column>
-                        
-                        <h:column >
-                            <h:commandButton value="Matriculas" action="#{jsfEnc.goMatricula()}"/> 
-                        </h:column>
-                        
-                        <h:column >
-                            <h:commandButton value="Conteudo" action="#{jsfEnc.goConteudo()}"/> 
+                            <h:commandButton value="Entrar" action="#{login.doLogin()}"/> 
                         </h:column>
                     </h:panelGrid>
+                    
+                    <font color="red"><h:messages></h:messages></font>
 
                 </h:form>
             </ui:define>
