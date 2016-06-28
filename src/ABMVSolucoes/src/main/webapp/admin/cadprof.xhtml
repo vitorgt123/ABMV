@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../resources/templateEntidade.xhtml">
+
+            <ui:define name="top">
+                <p>Formulário de Professores</p>
+            </ui:define>
+
+            <ui:define name="left">
+                <h:form>
+
+                    <table class="table">
+                        <tr>
+                            <td class="justify"><label>Título:</label></td>
+                            <h:selectOneMenu value="#{profBean.titulo}">
+                                <f:selectItem itemLabel="Mestre" itemValue="Mestre"/>
+                                <f:selectItem itemLabel="Doutor" itemValue="Doutor"/>
+                            </h:selectOneMenu> 
+                        </tr>
+                        <tr>
+                            <td class="justify"><label>Nome:</label></td>
+                            <td><h:inputText value="#{profBean.nome}" /></td>
+                        </tr>
+                        <tr>
+                            <td class="justify"><label>Email:</label></td>
+                            <td><h:inputText value="#{profBean.email}" />   </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="align-right">
+                                <h:commandButton value="salvar" action="#{profBean.salvar()}" class="border form-button pointer"/>         
+                                <h:commandButton value="atualizar" action="#{profBean.update()}" class="border form-button pointer"/> 
+                            </td>
+                        </tr>
+                    </table>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value="Professores cadastrados"/></h1>
+                        <h:dataTable value="#{profBean.all}" var="prof">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Id"/>
+                                </f:facet>
+                                <h:outputText value="#{prof.id}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nome"/>
+                                </f:facet>
+                                <h:outputText value="#{prof.nome}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Email"/>
+                                </f:facet>
+                                <h:outputText value="#{prof.email}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Titulo"/>
+                                </f:facet>
+                                <h:outputText value="#{prof.titulo}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Remover"/>
+                                </f:facet>
+                                <h:commandButton value="X" action="#{profBean.remove(prof)}"/>    
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Editar"/>
+                                </f:facet>
+                                <h:commandButton value="Editar" action="#{profBean.load_data(prof)}" />   
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+
+            <ui:define name="bottom">
+                <h:form>
+                    <h:commandButton value="Home" action="#{jsfEnc.goHomeAdmin()}"/> 
+                </h:form>    
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+
