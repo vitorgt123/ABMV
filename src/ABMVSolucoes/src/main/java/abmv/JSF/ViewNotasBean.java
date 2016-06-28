@@ -9,7 +9,7 @@ import abmv.CRUD.CRUDAula;
 import abmv.CRUD.CRUDMatricula;
 import abmv.Entidade.Aluno;
 import abmv.Entidade.Aulas;
-import abmv.Entidade.Disciplina;
+import abmv.Entidade.Avaliacao;
 import abmv.Entidade.Matricula;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -22,18 +22,74 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class ViewNotasBean {
+
     private Aluno aluno;
     private Matricula matr;
-    private Disciplina disc;
+    private Avaliacao av;
     private static List<Matricula> matrs;
     private static List<Aulas> aulas;
+    private static List<Avaliacao> avaliacao;
+    private static int notas;
+    private static int notatotal;
+    private static int n1;
+    private static int p1;
     private static int total;
-    private static int faltas;
-    private static float pocentagem;
+    private static int reajuste;
 
-    public ViewNotasBean(){
+    /**
+     * Creates a new instance of ViewFBean
+     */
+    public ViewNotasBean() {
     }
-    
+
+    public int getReajuste() {
+        return reajuste;
+    }
+
+    public void setReajuste(int reajuste) {
+        ViewNotasBean.reajuste = reajuste;
+    }
+
+    public int getN1() {
+        return n1;
+    }
+
+    public void setN1(int n1) {
+        ViewNotasBean.n1 = n1;
+    }
+
+    public int getP1() {
+        return p1;
+    }
+
+    public void setP1(int p1) {
+        ViewNotasBean.p1 = p1;
+    }
+
+    public int getNotatotal() {
+        return notatotal;
+    }
+
+    public void setNotatotal(int notatotal) {
+        ViewNotasBean.notatotal = notatotal;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        ViewNotasBean.total = total;
+    }
+
+    public List<Avaliacao> getAvaliacao() {
+        return avaliacao;
+    }
+
+    public void setAvaliacao(List<Avaliacao> avaliacao) {
+        ViewNotasBean.avaliacao = avaliacao;
+    }
+
     public Aluno getAluno() {
         return aluno;
     }
@@ -50,72 +106,63 @@ public class ViewNotasBean {
         this.matr = matr;
     }
 
-    public Disciplina getDisc() {
-        return disc;
-    }
-
-    public void setDisc(Disciplina disc) {
-        this.disc = disc;
-    }
-
-    public static List<Matricula> getMatrs() {
+    public List<Matricula> getMatrs() {
         return matrs;
     }
 
-    public static void setMatrs(List<Matricula> matrs) {
+    public void setMatrs(List<Matricula> matrs) {
         ViewNotasBean.matrs = matrs;
-    }
-
-    public static List<Aulas> getAulas() {
-        return aulas;
-    }
-
-    public static void setAulas(List<Aulas> aulas) {
-        ViewNotasBean.aulas = aulas;
-    }
-
-    public static int getTotal() {
-        return total;
-    }
-
-    public static void setTotal(int total) {
-        ViewNotasBean.total = total;
-    }
-
-    public static int getFaltas() {
-        return faltas;
-    }
-
-    public static void setFaltas(int faltas) {
-        ViewNotasBean.faltas = faltas;
     }
 
     public void refreshMatr() {
         matrs = (List<Matricula>) new CRUDMatricula().getMatrByAluno(aluno.getId());
     }
 
-    public void refreshAulas() {
-        aulas = (List<Aulas>) new CRUDAula().getAulaByMtr(matr.getId());
-        total = matr.getDisciplina().getQtdeaulas();
-        calc();
+    public void refreshNotas() {
+        avaliacao = (List<Avaliacao>) new CRUDAula().getNotasByMatr(matr.getId());
+        CalcMedia();
     }
-    
-    public void calc() {
-        faltas = 0;
-        for (int i = 0; i < aulas.size(); i++) {
-            faltas += aulas.get(i).getFaltas();
+
+    public List<Aulas> getAulas() {
+        return aulas;
+    }
+
+    public void setAulas(List<Aulas> aulas) {
+        ViewNotasBean.aulas = aulas;
+    }
+
+    public Avaliacao getAv() {
+        return av;
+    }
+
+    public void setAv(Avaliacao av) {
+        this.av = av;
+    }
+
+    public int getNotas() {
+        return notas;
+    }
+
+    public void setNotas(int notas) {
+        ViewNotasBean.notas = notas;
+    }
+
+    public void CalcMedia() {
+        notatotal = 0;
+        total = 0;
+
+        for (int i = 0; i < avaliacao.size(); i++) {
+            n1 = avaliacao.get(i).getNota();
+            p1 = avaliacao.get(i).getPeso();
+            notatotal = notatotal + n1;
+            total = total + p1;                        
         }
+        
+        Ajuste();
+    }
+    
+    public void Ajuste(){
+        reajuste = (notatotal*10) / total;
+    }
 
-        pocentagem = 100 - (faltas / total * 100);
-    }
-    
-    public static float getPocentagem() {
-        return pocentagem;
-    }
-
-    public static void setPocentagem(float pocentagem) {
-        ViewNotasBean.pocentagem = pocentagem;
-    }
-    
-    
 }

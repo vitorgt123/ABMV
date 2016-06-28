@@ -41,7 +41,7 @@ public class CRUDAula {
     public Collection<Avaliacao> getNotasByMatr(int id) {
         EntityManager em = emf.createEntityManager();
         try {
-            Query query = em.createNativeQuery("SELECT * FROM avaliacao WHERE matricula="+id, Aulas.class);
+            Query query = em.createNativeQuery("SELECT * FROM avaliacao WHERE matricula="+id, Avaliacao.class);
             return  (Collection<Avaliacao>) query.getResultList();
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
