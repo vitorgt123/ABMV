@@ -96,7 +96,7 @@ public class AlunoBean {
         aluno.setEmail(email);
         aluno.setCurso(curso);
         aluno.setPeriodo(periodo);
-        new abmv.CRUD.CRUDAluno().persist(aluno);
+        new CRUDAluno().persist(aluno);
     }
 
     public void remove(Aluno aluno) {
