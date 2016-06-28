@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./resources/templateHome.xhtml">
+
+            <ui:define name="top">
+                ABMV Soluções
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    #{login.opcao}
+                    <h:panelGrid>
+                        <h:column >
+                            <h:commandButton value="Alunos" action="#{jsfEnc.goAlunos()}"/> 
+                        </h:column>
+
+                        <h:column >
+                            <h:commandButton value="Professores" action="#{jsfEnc.goProfessores()}"/> 
+                        </h:column>
+
+                        <h:column >
+                            <h:commandButton value="Disciplinas" action="#{jsfEnc.goDisciplinas()}"/> 
+                        </h:column>
+                        
+                        <h:column >
+                            <h:commandButton value="Matriculas" action="#{jsfEnc.goMatricula()}"/> 
+                        </h:column>
+                        
+                        <h:column >
+                            <h:commandButton value="Conteudo" action="#{jsfEnc.goConteudo()}"/> 
+                        </h:column>
+                        
+                                                <h:column >
+                            <h:commandButton value="Sair" action="#{login.doLogout}"/> 
+                        </h:column>
+                    </h:panelGrid>
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
