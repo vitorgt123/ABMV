@@ -6,6 +6,7 @@
 package abmv.CRUD;
 
 import abmv.Entidade.Aulas;
+import abmv.Entidade.Avaliacao;
 import abmv.Entidade.Matricula;
 import java.util.Collection;
 import java.util.logging.Level;
@@ -32,6 +33,19 @@ public class CRUDAula {
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
             em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+    }
+    
+    public Collection<Avaliacao> getNotasByMatr(int id) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            Query query = em.createNativeQuery("SELECT * FROM avaliacao WHERE matricula="+id, Aulas.class);
+            return  (Collection<Avaliacao>) query.getResultList();
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            return null;
         } finally {
             em.close();
         }

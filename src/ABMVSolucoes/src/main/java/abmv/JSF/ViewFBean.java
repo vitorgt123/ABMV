@@ -9,7 +9,10 @@ import abmv.CRUD.CRUDAula;
 import abmv.CRUD.CRUDMatricula;
 import abmv.Entidade.Aluno;
 import abmv.Entidade.Aulas;
+import abmv.Entidade.Avaliacao;
+import abmv.Entidade.Disciplina;
 import abmv.Entidade.Matricula;
+import java.util.Collection;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -25,7 +28,7 @@ public class ViewFBean {
     private Aluno aluno;
     private Matricula matr;
     private static List<Matricula> matrs;
-    private static List<Aulas> aulas;
+    private static List<Avaliacao> avaliacao;
     private static int total;
     private static int faltas;
     private static float pocentagem;
@@ -73,24 +76,24 @@ public class ViewFBean {
     }
 
     public void refreshAulas() {
-        aulas = (List<Aulas>) new CRUDAula().getAulaByMtr(matr.getId());
+        avaliacao = (List<Avaliacao>) new CRUDAula().getNotasByMatr(matr.getId());
         total = matr.getDisciplina().getQtdeaulas();
         calc();
     }
 
-    public List<Aulas> getAulas() {
-        return aulas;
+    public List<Avaliacao> getAvaliacao() {
+        return avaliacao;
     }
 
-    public void setAulas(List<Aulas> aulas) {
-        ViewFBean.aulas = aulas;
+    public void setAvaliacao(List<Avaliacao> aulas) {
+        ViewFBean.avaliacao = aulas;
     }
 
     public void calc() {
         faltas = 0;
-        for (int i = 0; i < aulas.size(); i++) {
-            faltas += aulas.get(i).getFaltas();
-        }
+//        for (int i = 0; i < avaliacao.size(); i++) {
+//            faltas += avaliacao.get(i).getFaltas();
+//        }
 
         pocentagem = 100 - (faltas / total * 100);
     }

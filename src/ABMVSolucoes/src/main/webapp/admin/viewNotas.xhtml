@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../resources/templateEntidade.xhtml">
+
+            <ui:define name="top">
+                <p>View Notas</p>
+            </ui:define>
+
+            <ui:define name="left">
+                <h:form>           
+                        <div>
+                            <td class="justify"><label>Aluno:</label></td>                                                          
+                            <h:selectOneMenu value="#{viewFBean.aluno}"  converter="alunoConverter" >
+                                <f:selectItems value="#{alunoBean.all}" var="prof" itemLabel="#{prof.nome}" itemValue="#{prof}"  />                           
+                            </h:selectOneMenu>      
+                        </div>
+                        <div>
+                            <td class="justify"><label>Disciplina:</label></td> 
+                            <h:selectOneMenu value="#{viewFBean.matr}"  converter="matriculaConverter" >
+                                <f:selectItems value="#{viewFBean.matrs}" var="matr" itemLabel="#{matr.disciplina.nome}" itemValue="#{matr}"  />                           
+                            </h:selectOneMenu>  
+                        </div> 
+                        <div>
+                            <td colspan="2" class="align-right">
+                                <h:commandButton value="Atualizar D" action="#{viewFBean.refreshMatr()}" class="border form-button pointer"/>
+                                <h:commandButton value="Atualizar A" action="#{viewFBean.refreshAulas()}" class="border form-button pointer"/>
+                            </td>
+                        </div>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <div>
+                        <h:dataTable value="#{viewFBean.avaliacao}" var="aula">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Dia"/>
+                                </f:facet>
+                                <h:outputText value="#{aula.avaliacaoPK.nome}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Notas"/>
+                                </f:facet>
+                                <h:outputText value="#{aula.nota}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                    <hr></hr>                        
+                    <label>Total Faltas:</label>
+                    <h:outputText value="#{viewFBean.faltas}"/>/<h:outputText value="#{viewFBean.total}"/>
+                    <hr></hr>                        
+                    <label>Porcentagem de presença:</label>
+                    <h:outputText value="#{viewFBean.pocentagem}"/>%
+                </h:form>
+            </ui:define>
+
+            <ui:define name="bottom">
+                bottom
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
