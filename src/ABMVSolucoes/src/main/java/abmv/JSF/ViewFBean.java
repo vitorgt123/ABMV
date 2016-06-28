@@ -6,9 +6,11 @@
 package abmv.JSF;
 
 import abmv.CRUD.CRUDAula;
+import abmv.CRUD.CRUDConteudo;
 import abmv.CRUD.CRUDMatricula;
 import abmv.Entidade.Aluno;
 import abmv.Entidade.Aulas;
+import abmv.Entidade.Conteudo;
 import abmv.Entidade.Matricula;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -26,6 +28,7 @@ public class ViewFBean {
     private Matricula matr;
     private static List<Matricula> matrs;
     private static List<Aulas> aulas;
+    private static List<Conteudo> cont;
     private static int total;
     private static int faltas;
     private static float pocentagem;
@@ -74,6 +77,7 @@ public class ViewFBean {
 
     public void refreshAulas() {
         aulas = (List<Aulas>) new CRUDAula().getAulaByMtr(matr.getId());
+        cont = (List<Conteudo>) new CRUDConteudo().getContByDisc(matr.getDisciplina().getId());
         total = matr.getDisciplina().getQtdeaulas();
         calc();
     }
@@ -111,4 +115,12 @@ public class ViewFBean {
         ViewFBean.faltas = faltas;
     }
 
+    public List<Conteudo> getCont() {
+        return cont;
+    }
+
+    public void setCont(List<Conteudo> cont) {
+        ViewFBean.cont = cont;
+    }
+    
 }
