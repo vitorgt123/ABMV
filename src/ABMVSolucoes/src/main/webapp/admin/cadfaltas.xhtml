@@ -38,7 +38,8 @@
                         </tr>                       
                         <tr>
                             <td colspan="2" class="align-right">
-                                <h:commandButton value="salvar" action="#{aulaBean.salvar()}" class="border form-button pointer"/>         
+                                <h:commandButton value="salvar" action="#{aulaBean.salvar()}" class="border form-button pointer"/> 
+                                <h:commandButton value="atualizar" action="#{aulaBean.refreshAlunos()}" class="border form-button pointer"/> 
                             </td>
                         </tr>
                     </table>    
@@ -49,26 +50,33 @@
             <ui:define name="content">
                 <h:form>
                     <div>
-                        <h:dataTable value="#{matrBean.matrs}" var="matr">
+                        <h:dataTable value="#{aulaBean.aulas}" var="aula">
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Id"/>
+                                    <h:outputText value="Dia"/>
                                 </f:facet>
-                                <h:outputText value="#{matr.id}"/>
+                                <h:outputText value="#{aula.aulasPK.dia}"/>
                             </h:column>
 
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Aluno"/>
                                 </f:facet>
-                                <h:outputText value="#{matr.aluno.nome}"/>
+                                <h:outputText value="#{aula.matricula1.aluno.nome}"/>
                             </h:column>
 
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Remover"/>
+                                    <h:outputText value="Faltas"/>
                                 </f:facet>
-                                <h:commandButton value="X" action="#{matrBean.remove(matr)}"/>    
+                                <h:inputText value="#{aula.faltas}"/>
+                            </h:column>
+                            
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Salvar"/>
+                                </f:facet>
+                                <h:commandButton value="OK" action="#{aulaBean.insertFaltas(aula)}"/>    
                             </h:column>
                         </h:dataTable>
                     </div>
