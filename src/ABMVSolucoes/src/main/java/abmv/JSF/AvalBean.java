@@ -5,10 +5,13 @@
  */
 package abmv.JSF;
 
+import abmv.CRUD.CRUDAvaliacao;
 import abmv.CRUD.CRUDMatricula;
 import abmv.Entidade.Avaliacao;
+import abmv.Entidade.AvaliacaoPK;
 import abmv.Entidade.Disciplina;
 import abmv.Entidade.Matricula;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -26,6 +29,7 @@ public class AvalBean {
     private static List<Matricula> matrs;
     private static List<Avaliacao> avals;
     private Disciplina disciplina;
+
     /**
      * Creates a new instance of AvalBean
      */
@@ -71,15 +75,19 @@ public class AvalBean {
     public void setDisciplina(Disciplina disciplina) {
         this.disciplina = disciplina;
     }
-    
-    public void refreshAlunos(){
-        //aulas = new ArrayList();
+
+    public void refreshAlunos() {
+        avals = new ArrayList();
         matrs = (List<Matricula>) new CRUDMatricula().getMatriculaByDisciplina(disciplina.getId());
-//        for(Matricula mat : matrs){
-//            Aulas aula = new Aulas(new AulasPK(mat.getId(),dia),0);
-//            aula.setMatricula1(mat);
-//            aulas.add(aula);
-//        }
+        for (Matricula mat : matrs) {
+            Avaliacao ava = new Avaliacao(new AvaliacaoPK(mat.getId(), nome), val, 0);
+            ava.setMatricula1(mat);
+            avals.add(ava);
+        }
+    }
+
+    public void saveNotas(Avaliacao aval){
+        new CRUDAvaliacao().persist(aval);
     }
     
 }

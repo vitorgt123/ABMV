@@ -34,7 +34,6 @@
                         </tr>                       
                         <tr>
                             <td colspan="2" class="align-right">
-                                <h:commandButton value="salvar" action="#{aulaBean.salvar()}" class="border form-button pointer"/> 
                                 <h:commandButton value="atualizar" action="#{avalBean.refreshAlunos()}" class="border form-button pointer"/> 
                             </td>
                         </tr>
@@ -71,14 +70,14 @@
                                 <f:facet name="header">
                                     <h:outputText value="Nota"/>
                                 </f:facet>
-                                <h:outputText value="#{ava.nota}"/>
+                                <h:inputText value="#{ava.nota}"/>
                             </h:column>
 
                             <h:column>
                                 <f:facet name="header">
                                     <h:outputText value="Salvar"/>
                                 </f:facet>
-                                <h:commandButton value="OK" action="#{aulaBean.insertFaltas(aula)}"/>    
+                                <h:commandButton value="OK" action="#{avalBean.saveNotas(ava)}"/>    
                             </h:column>
                         </h:dataTable>
                     </div>
