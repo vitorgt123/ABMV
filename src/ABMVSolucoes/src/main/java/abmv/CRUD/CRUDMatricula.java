@@ -36,6 +36,21 @@ public class CRUDMatricula {
         }
     }
 
+    public Collection<Matricula> getMatrByAluno(int id){
+        EntityManager em = emf.createEntityManager();
+        try {
+            Query query = em.createNativeQuery("SELECT * FROM matricula WHERE aluno="+id, Matricula.class);
+            return  (Collection<Matricula>) query.getResultList();
+            //return em.createQuery("SELECT * FROM matricula WHERE disciplina="+id,Matricula.class).getResultList();
+//            return em.createNamedQuery("Matricula.findMatriculaByDisciplina").getResultList();
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+    
     public Collection<Matricula> getAll() {
         EntityManager em = emf.createEntityManager();
         try {

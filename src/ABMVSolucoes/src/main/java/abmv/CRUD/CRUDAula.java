@@ -6,12 +6,14 @@
 package abmv.CRUD;
 
 import abmv.Entidade.Aulas;
+import abmv.Entidade.Matricula;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 /**
  *
@@ -35,6 +37,21 @@ public class CRUDAula {
         }
     }
 
+    public Collection<Aulas> getAulaByMtr(int id) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            Query query = em.createNativeQuery("SELECT * FROM aulas WHERE matricula="+id, Aulas.class);
+            return  (Collection<Aulas>) query.getResultList();
+            //return em.createQuery("SELECT * FROM matricula WHERE disciplina="+id,Matricula.class).getResultList();
+//            return em.createNamedQuery("Matricula.findMatriculaByDisciplina").getResultList();
+        } catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+    
     public Collection<Aulas> getAll() {
         EntityManager em = emf.createEntityManager();
         try {
