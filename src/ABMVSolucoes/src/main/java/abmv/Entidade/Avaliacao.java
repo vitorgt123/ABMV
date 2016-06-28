@@ -6,7 +6,6 @@
 package abmv.Entidade;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -39,11 +38,11 @@ public class Avaliacao implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "peso")
-    private BigInteger peso;
+    private int peso;
     @Basic(optional = false)
     @NotNull
     @Column(name = "nota")
-    private BigInteger nota;
+    private int nota;
     @JoinColumn(name = "matricula", referencedColumnName = "id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Matricula matricula1;
@@ -55,7 +54,7 @@ public class Avaliacao implements Serializable {
         this.avaliacaoPK = avaliacaoPK;
     }
 
-    public Avaliacao(AvaliacaoPK avaliacaoPK, BigInteger peso, BigInteger nota) {
+    public Avaliacao(AvaliacaoPK avaliacaoPK, int peso, int nota) {
         this.avaliacaoPK = avaliacaoPK;
         this.peso = peso;
         this.nota = nota;
@@ -73,19 +72,19 @@ public class Avaliacao implements Serializable {
         this.avaliacaoPK = avaliacaoPK;
     }
 
-    public BigInteger getPeso() {
+    public int getPeso() {
         return peso;
     }
 
-    public void setPeso(BigInteger peso) {
+    public void setPeso(int peso) {
         this.peso = peso;
     }
 
-    public BigInteger getNota() {
+    public int getNota() {
         return nota;
     }
 
-    public void setNota(BigInteger nota) {
+    public void setNota(int nota) {
         this.nota = nota;
     }
 

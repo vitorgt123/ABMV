@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./../resources/templateEntidade.xhtml">
+
+
+            <ui:define name="top">
+                <p>Formulário de Notas</p>
+            </ui:define>
+
+            <ui:define name="left">
+                <h:form>
+                    <div class="table" var="matricula">                         
+                        <td class="justify"><label>Disciplina:</label></td>                                                                                  
+                        <h:selectOneMenu value="#{avalBean.disciplina}" converter="disciplinaConverter">
+                            <f:selectItems value="#{jsfDisciplina.all}" var="dis" itemLabel="#{dis.nome}" itemValue="#{dis}" />                           
+                        </h:selectOneMenu>                              
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <td class="justify"><label>Nome:</label></td>
+                            <td><h:inputText value="#{avalBean.nome}" /></td>
+                        </tr>
+                        <tr>
+                            <td class="justify"><label>Valor:</label></td>
+                            <td><h:inputText value="#{avalBean.val}" />   </td>
+                        </tr>                       
+                        <tr>
+                            <td colspan="2" class="align-right">
+                                <h:commandButton value="salvar" action="#{aulaBean.salvar()}" class="border form-button pointer"/> 
+                                <h:commandButton value="atualizar" action="#{avalBean.refreshAlunos()}" class="border form-button pointer"/> 
+                            </td>
+                        </tr>
+                    </table>    
+                </h:form>
+
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <div>
+                        <h:dataTable value="#{avalBean.avals}" var="ava">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nome"/>
+                                </f:facet>
+                                <h:outputText value="#{ava.matricula1.aluno.nome}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nome da Ava."/>
+                                </f:facet>
+                                <h:outputText value="#{ava.avaliacaoPK.nome}"/>
+                            </h:column>
+                            
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Peso"/>
+                                </f:facet>
+                                <h:outputText value="#{ava.peso}"/>
+                            </h:column>
+                            
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Nota"/>
+                                </f:facet>
+                                <h:outputText value="#{ava.nota}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Salvar"/>
+                                </f:facet>
+                                <h:commandButton value="OK" action="#{aulaBean.insertFaltas(aula)}"/>    
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </h:form>
+
+            </ui:define>
+
+            <ui:define name="bottom">
+                <h:form>
+                    <h:commandButton value="Home" action="#{jsfEnc.goHome()}"/> 
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+
