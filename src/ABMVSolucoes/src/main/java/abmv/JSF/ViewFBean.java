@@ -10,11 +10,14 @@ import abmv.CRUD.CRUDConteudo;
 import abmv.CRUD.CRUDMatricula;
 import abmv.Entidade.Aluno;
 import abmv.Entidade.Aulas;
+import abmv.Entidade.AulasPK;
 import abmv.Entidade.Conteudo;
 import abmv.Entidade.Matricula;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import junit.framework.Assert;
 import org.junit.Test;
 
 /**
@@ -90,13 +93,12 @@ public class ViewFBean {
     public void setAulas(List<Aulas> aulas) {
         ViewFBean.aulas = aulas;
     }
-
+    
     public void calc() {
         faltas = 0;
         for (int i = 0; i < aulas.size(); i++) {
             faltas += aulas.get(i).getFaltas();
         }
-
         pocentagem = 100 - (faltas / total * 100);
     }
 
